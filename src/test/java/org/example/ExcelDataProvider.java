@@ -59,7 +59,6 @@ public class ExcelDataProvider {
                 for (int j = 0; j < headerRow.getLastCellNum(); j++) {
                     Cell headerCell = headerRow.getCell(j);
                     Cell dataCell = row.getCell(j);
-
                     String header = formatter.formatCellValue(headerCell)
                             .trim()
                             .toLowerCase()
