@@ -1,0 +1,12 @@
+<suite name="All Tests">
+    <listeners>
+        <listener class-name="org.example.TestListener"/>
+    </listeners>
+
+    <test name="Regression">
+        <classes>
+            <class name="org.example.LoginTest"/>
+            <class name="org.example.CheckoutTest"/>
+        </classes>
+    </test>
+</suite>
