@@ -2,20 +2,25 @@ package org.example;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.util.Map;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
+@Listeners(org.example.TestListener.class)
 public class CheckoutTest extends BaseTest {
 
     private static final Logger log = LogManager.getLogger(CheckoutTest.class);
 
     public CheckoutTest() {
-        super("src/test/resources/Data/test_data.xlsx", "CekOut_Data");
+        setExcel("src/test/resources/Data/test_data.xlsx", "CekOut_Data");
     }
+
+
 
     @DataProvider(name = "checkoutData")
     public Object[][] checkoutDataProvider() {
@@ -63,7 +68,7 @@ public class CheckoutTest extends BaseTest {
         assertThat(cartPage.isCartPageDisplayed()).as("Cart page harus tampil").isTrue();
         cartPage.clickCheckout();
 
-        // CHECKOUT PAGE → FILL FORM
+        // CHECKOUT PAGE → FORM
         CheckoutPage checkoutPage = new CheckoutPage(driver);
         checkoutPage.waitForPageToLoad();
         checkoutPage.fillCheckoutInfo(firstName, lastName, postalCode);
